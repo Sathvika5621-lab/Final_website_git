@@ -1,0 +1,64 @@
+/* Add this to your global CSS file (e.g., App.css) */
+body {
+    background-color: #f4f4f4; /* Light grey background */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  input, .p-radiobutton .p-radiobutton-box .p-radiobutton-icon, .p-button {
+    border-radius: 5px; /* Rounded corners for input fields and buttons */
+  }
+  
+  .p-radiobutton .p-radiobutton-box {
+    border-radius: 50%; /* Circular radio buttons */
+  }
+  
+  .p-error {
+    color: #ff4d4f; /* Red color for error messages */
+  }
+  
+  .p-button {
+    background-color: #0052cc;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .p-button:hover {
+    background-color: #003d99;
+  }
+  
+  .form-section {
+    margin-bottom: 20px;
+  }
+  
+  .form-section label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-section input, .form-section .p-radiobutton {
+    margin-bottom: 10px;
+  }
+  
+  .fieldset-legend {
+    color: #000000; /* Dark blue for the legend */
+    font-size: 16px;
+    /* font-weight: bold; */
+    margin-bottom: 20px;
+  }
+  
+  .form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for form container */
+    max-width: 1auto;
+    margin: 20px auto;
+  }

@@ -1,0 +1,55 @@
+
+.body-content {
+  padding-top: 700px;
+}
+
+.fieldset-legend .p-fieldset {
+  max-width : 60%;
+  border-radius: 8px;
+  border: 1px solid #dee2e6; /* Light grey border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin: 20px auto; /* Centering the fieldset */
+  padding: 20px;
+  background-color: white;
+  width: auto;
+  max-width: 80%; /* Responsive width */
+}
+
+.form-question {
+  background-color: rgb(238, 239, 243); /* For contrast against the fieldset */
+  border: 1px solid #eff0f1; /* Subtle border */
+  border-radius: 8px;
+  margin-bottom: 10px; /* Space between questions */
+  padding: 15px; /* Padding around question content */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Very soft shadow */
+  line-height : 1.5;
+}
+
+.form-question label {
+  margin-bottom: 10px;
+  color: #333; /* Ensuring readability */
+}
+
+.blue-button-sm {
+  background-color: #265787;
+  color: white;
+  border: none;
+  font-weight: normal;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.blue-button-sm:hover {
+  background-color: #1e4566;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between; /* For evenly spacing buttons */
+  gap: 10px;
+}
+
+.radio-option .p-radiobutton-label {
+  margin-left: 8px;
+}

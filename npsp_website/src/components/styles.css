@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+.logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 125px; /* Adjust the size as needed */
+}
+
+.login-card{
+  width :30rem;
+}
+
+.links{
+  text-align:center;
+}
+
+.padding{
+  padding:0.5rem;
+
+}
+
+.Headings {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px ;
+}
+
+.anylabels{
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+ 
+}
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em;
+  color: white;
+}
+
+.login-info {
+  text-align: right;
+}
+
+.header-logo{
+  width:100px;
+}
+.header-title {
+  /* This will keep the title centered in the header */
+  flex-grow: 1;
+  text-align: center;
+}
+
+
+.header-userinfo {
+  /* Align the user info and logout button */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.blue-button-sm {
+  width: calc(100% - 20px);
+  background-color: #265787 !important; /* Set your specific color */
+  border-color: #265787 !important; /* Ensure border color matches */
+  padding: 8px 16px; /* Reduced padding for smaller size */
+  font-size: 1rem; /* Smaller font size */
+  margin-bottom : 10px; /* Space between buttons */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  display : block ; 
+  border-radius: 4px;
+  color: white;
+}
+
+.blue-button-sm.active {
+  font-weight : bold;  /* Make the text of the active button bold */
+  background-color: #8aacf5;
+}
+
+.blue-button-sm:hover {
+  background-color: #8aacf5; /* Slightly darken on hover */
+  cursor: pointer;
+}
+
+.form-blue-button-sm {
+   background-color:#265787;
+   color : white;
+   border : 1px solid #265787;
+   border-color: #f0f0f0;
+   padding : 8px 16px;
+   font-size: 1rem; /* Smaller font size */
+   margin-bottom : 10px; /* Space between buttons */
+   border-radius: 4px;
+   width: 20rem;
+   display : inline-flex; 
+   align-items: center;
+   justify-content: center;
+   transition: background-color 0.3s ease;
+   white-space : nowrap;
+   width : auto;
+   max-width : 100%;
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.save-and-exit-btn {
+  padding: 12px 24px; /* Adjust padding to ensure text fits without wrapping */
+  min-width: 180px; /* Custom minimum width if needed */
+  margin-left: 20px; /* Adds space to the left of the button */
+  margin-right: 5px; 
+  width: auto; /* Adjust based on the text length and desired button size */
+  /* Inherits other styles from .form-blue-button-sm */
+} 
+
+.form-blue-button-sm:hover {
+  background-color: #1e4566 ;
+  cursor : pointer; 
+}
+
+
+.fieldset-legend .p-fieldset {
+  max-width : 60%;
+  border-radius: 8px;
+  border: 1px solid #dee2e6; /* Light grey border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin: 20px auto; /* Centering the fieldset */
+  padding: 20px;
+  background-color: white;
+  width: 80%;
+  max-width: 1200px; /* Responsive width */
+}
+
+
+.flex-container .flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap : 3px;
+  justify-content: flex-end;
+  align-items: center;
+  padding : 10px 0;
+  margin: 5px; /* Adds space around the button containers */
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  width : 100%;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  width: 200px; /* Fixed width for the sidebar */
+  background-color: #c0c8e0; /* Dark blue background */
+  color: white;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box; 
+}
+
+.sidebar h2 {
+  color: white;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.content {
+  flex-grow: 1; /* Take up the remaining space */
+  background-color: #ffffff; /* Light grey background */
+  border-top: 1px solid rgb(173, 165, 165); /* Top border */
+  border-right: 1px solid rgb(173, 165, 165); /* Right border */
+  border-bottom: 1px solid rgb(173, 165, 165); /* Bottom border */
+  border-left: none; /* No left border */
+  padding: 20px;
+  overflow: auto;
+}
+
+.p-button {
+  width: calc(100% - 40px); /* Full width minus padding on both sides */
+  margin-bottom: 12px; /* Space between buttons */
+  border-radius: 4px; /* Remove border */
+  
+}
+
+.sidebar .p-button {
+  width: 100%; /* Full width */
+  margin-bottom: 10px; /* Add some space between the buttons */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+
+.p-button-lg {
+  padding: 10px 20px; /* Larger buttons with padding */
+}
+
+.main-container {
+  display : flex; 
+  flex-direction : column; 
+  align-items: flex-start;
+}
+
+.mouse-id {
+  align-self: flex-start; /* Aligns the MouseID to the start */
+  padding-left: 20px; /* Adjust as needed to align with the sidebar */
+  margin-top: 20px; /* Adds some space above the MouseID */
+}
+
+
+.custom-panel-fieldset .p-panel-header .p-fieldset-legend {
+  background-color: #c0c8e0;
+}
+.custom-calendar .p-inputtext {
+  border: none;
+  background-color: white;
+  box-shadow: none;
+  padding: 5px;
+}
+
+
+/* styles.css or a similar CSS file */
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-tbody > tr > td {
+    border-right: 1px solid #e5e5e5;
+}
+
+.p-datatable .p-datatable-thead > tr > th:last-child,
+.p-datatable .p-datatable-tbody > tr > td:last-child {
+    border-right: none;
+}
