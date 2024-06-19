@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 
+
 const NavBar = () => {
     let navigate = useNavigate();
 
@@ -9,12 +10,12 @@ const NavBar = () => {
         {
             label: 'Home',
             icon: 'pi pi-fw pi-home',
-            command: () => { navigate('/home-page'); }
+            command: () => { navigate('/home'); }
         },
         {
-            label: 'Next Mouse Details',
+            label: 'Mouse Details',
             icon: 'pi pi-fw pi-plus',
-            command: () => { navigate('/next-mouse-details'); }
+            command: () => { navigate('/home-page'); }
         }
     ];
 

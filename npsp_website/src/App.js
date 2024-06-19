@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AnimalHousing from "./components/Forms/AnimalHousing";
 import HomePage from "./components/HomePage";
+import Home from './components/Home';
 import LoginPage from "./components/LoginPage";
 import FormsList from "./components/FormsList";
 import ForgotPassword from './components/Forms/ForgotPassword';
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/home-page" element={<HomePage mousedetails={mousedetails} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/formslist" element={<FormsList />} />
