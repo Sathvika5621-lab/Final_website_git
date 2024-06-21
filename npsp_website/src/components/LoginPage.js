@@ -17,7 +17,7 @@ function LoginPage() {
 
   const onSubmit = (data) => {
     if (data.email === 'admin' && data.password === 'admin') {
-      navigate('/home-page');
+      navigate('/home');
       // navigate('/animal-housing');
     } else {
       console.error('Invalid credentials');

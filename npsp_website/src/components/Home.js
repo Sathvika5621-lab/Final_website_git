@@ -18,6 +18,10 @@ function Home() {
     <div>
         <Header />
         <NavBar />
+        
+         <h1>National preclinical sepsis platform</h1>
+         <p> Please contact "forough@ohri.ca" for addition details.</p>
+          
 
     </div>
   )
