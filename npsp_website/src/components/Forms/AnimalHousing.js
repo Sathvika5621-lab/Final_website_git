@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Panel } from 'primereact/panel';
@@ -14,13 +14,13 @@ import { RadioGroup, CheckboxGroup } from './FormsComponents.js';
 
 const AnimalHousing = ({ addMouseDetails }) => {
     const { control, register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm();
-   
+    const [lastMouseId, setLastMouseId] = useState(0); 
     let navigate = useNavigate();
 
     const onSubmit = (data) => {
         const { malemice, femalemice, deliverydate, site, studydates } = data;
         const newMouseDetails = [];
-        let mouseCount = 1;
+        let mouseCount = lastMouseId + 1;  // Start from the last mouse_id
 
         for (let i = 0; i < parseInt(malemice); i++) {
             newMouseDetails.push({
@@ -44,10 +44,11 @@ const AnimalHousing = ({ addMouseDetails }) => {
             mouseCount++;
         }
 
+        setLastMouseId(mouseCount - 1);  // Update the last mouse_id
         addMouseDetails(newMouseDetails);
         navigate('/home-page');
     };
-
+    
     return (
         <div className="Headings">
             <Header userName="Jane Doe" />

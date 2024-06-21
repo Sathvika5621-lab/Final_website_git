@@ -238,3 +238,25 @@
 .p-datatable .p-datatable-tbody > tr > td:last-child {
     border-right: none;
 }
+
+.menubar-right {
+  justify-content: flex-end;
+  background-color: #c1d5ed;
+  border-radius : 8px;
+  border : none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menubar-right .p-menubar-root-list > .p-menubaritem {
+  margin-left: 1rem; /* Adds space between menu items */
+}
+
+.menubar-right .p-menubar-root-list > .p-menubaritem > .p-menuitem-link {
+   color: black; /* Text color for menu items */
+   border-radius: 4px;
+  }
+
+.menubar-right .p-menubar-root-list > .p-menubaritem > .p-menuitem-link:hover {
+  background-color: #0056b3; /* Change this color to the hover color you prefer */
+  color: black;
+}

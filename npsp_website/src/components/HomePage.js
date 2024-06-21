@@ -105,8 +105,8 @@ function HomePage({ mousedetails }) {
                 <Button label="Fill Syringe Prep Form" className="p-button-lg form-blue-button-sm" onClick={handleSyringePrepClick} disabled={!selectedMice.length} />
             </div>
           </div>
-            <div className="card" style={{ maxWidth: '1200px', margin: '0px auto', padding: '3px' }}>
-                <DataTable value={mousedetails} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows tableStyle={{ minWidth: '30rem' }} filters={filters} globalFilterFields={['mouse_id', 'site', 'sex', 'dateofbirth', 'shipmentdate', 'cageid']} header={header} selection={selectedMice} onSelectionChange={(e) => setSelectedMice(e.value)} selectionMode="multiple">
+            <div className="card" style={{ maxWidth: '1500px', margin: '0px auto', padding: '3px' }}>
+                <DataTable value={mousedetails} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} stripedRows  tableStyle={{ minWidth: '30rem' }} filters={filters} globalFilterFields={['mouse_id', 'site', 'sex', 'dateofbirth', 'shipmentdate', 'cageid']} header={header} selection={selectedMice} onSelectionChange={(e) => setSelectedMice(e.value)} selectionMode="multiple">
                     <Column selectionMode="multiple" headerStyle={{ width: '3em' }} />
                     <Column field="mouse_id" header="Mouse ID" />
                     <Column field="site" header="Site" filter filterElement={siteFilterElement} />

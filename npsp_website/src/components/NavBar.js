@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
-
+import './styles.css'; // Import the CSS file
 
 const NavBar = () => {
     let navigate = useNavigate();
@@ -21,7 +21,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <Menubar model={items} />
+            <Menubar model={items} className="menubar-right" />
         </div>
     );
 }

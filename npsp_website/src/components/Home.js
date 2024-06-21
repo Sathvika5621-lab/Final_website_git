@@ -20,7 +20,7 @@ function Home() {
         <NavBar />
         
          <h1>National preclinical sepsis platform</h1>
-         <p> Please contact "forough@ohri.ca" for addition details.</p>
+         <p> For any inquiries please contact Dr.Forough Jahandideh at fjahandideh@ohri.ca.</p>
           
 
     </div>
