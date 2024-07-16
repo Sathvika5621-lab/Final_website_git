@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+// AnimalHousing.js
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Panel } from 'primereact/panel';
@@ -12,13 +13,15 @@ import "../Formstyle.css";
 import { useNavigate } from 'react-router-dom';
 import { RadioGroup, CheckboxGroup } from './FormsComponents.js';
 
+
 const AnimalHousing = ({ addMouseDetails }) => {
     const { control, register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm();
+  
     const [lastMouseId, setLastMouseId] = useState(0); 
     let navigate = useNavigate();
 
     const onSubmit = (data) => {
-        const { malemice, femalemice, deliverydate, site, studydates } = data;
+        const { malemice, femalemice, deliverydate, site, studydates, slurrydose, endpoint, studytype } = data;
         const newMouseDetails = [];
         let mouseCount = lastMouseId + 1;  // Start from the last mouse_id
 
@@ -28,7 +31,10 @@ const AnimalHousing = ({ addMouseDetails }) => {
                 site,
                 sex: 'Male',
                 shipmentdate: deliverydate,
-                studydates
+                studydates,
+                slurrydose,
+                endpoint,
+                studytype
             });
             mouseCount++;
         }
@@ -39,7 +45,10 @@ const AnimalHousing = ({ addMouseDetails }) => {
                 site,
                 sex: 'Female',
                 shipmentdate: deliverydate,
-                studydates
+                studydates,
+                slurrydose,
+                endpoint,
+                studytype
             });
             mouseCount++;
         }
@@ -48,7 +57,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
         addMouseDetails(newMouseDetails);
         navigate('/home-page');
     };
-    
+
     return (
         <div className="Headings">
             <Header userName="Jane Doe" />

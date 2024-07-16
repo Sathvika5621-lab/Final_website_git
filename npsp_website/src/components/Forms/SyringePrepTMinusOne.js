@@ -155,7 +155,7 @@ function SyringePrepTMinusOne() {
   return (
     <div>
         <form onSubmit={handleSubmit(onSubmit)} className='p-formgrid p-grid'>
-        <div className="form-question" style={{ padding: '3px' }}>
+       
         <div className="flex-order-1 flex align-items-center justify-content-center" style={{ width: '8rem'}}>
            <Button label="Add Mice" onClick={addNewRow} className="p-button-lg form-blue-button-sm" />
          </div>
@@ -641,7 +641,7 @@ function SyringePrepTMinusOne() {
            <Button label="SUBMIT" className="p-button-lg form-blue-button-sm" />
          </div>
          </div> 
-         </div>
+    
      </form>
     </div>
   )

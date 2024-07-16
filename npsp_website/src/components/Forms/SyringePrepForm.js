@@ -4,6 +4,7 @@ import { useForm,Controller } from "react-hook-form";
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Panel } from 'primereact/panel';
 import { DataTable } from 'primereact/datatable';
+import Header from "../Header";
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -19,7 +20,7 @@ function SyringePrepForm() {
 
   return (
     <div>
-
+      <Header />
       <Panel header="For any inquiries please contact Dr.Forough Jahandideh at fjahandideh@ohri.ca"  toggleable >
          <h3 style={{marginTop:'0', marginBottom:'0'}}>Instructions: </h3>
          <ul style={{marginTop:'0', marginBottom:'0'}}>

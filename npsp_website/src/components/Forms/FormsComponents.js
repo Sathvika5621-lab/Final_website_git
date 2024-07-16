@@ -3,11 +3,11 @@ import { InputText } from "primereact/inputtext";
 import { RadioButton } from "primereact/radiobutton";
 import { Checkbox } from "primereact/checkbox";
 
-export const RadioGroup = ({ id, label, options, register, watch, setValue, clearErrors, errors, hasOther }) => {
+export const RadioGroup = ({ id, label, options, register, watch, setValue, clearErrors, errors, hasOther, hasYes }) => {
     const selectedValue = watch(id);
     const onValueChange = (value) => {
         setValue(id, value);
-        if (hasOther && value !== 'Other') {
+        if (hasOther && value !== 'Other' && value !== 'Yes') {
             setValue(`other${id}`, "");
             clearErrors(`other${id}`);
         }
@@ -29,15 +29,15 @@ export const RadioGroup = ({ id, label, options, register, watch, setValue, clea
                     <label htmlFor={`${id}_${option}`} className="p-radiobutton-label">{option}</label>
                 </div>
             ))}
-            {hasOther && selectedValue === 'Other' && (
+            {(hasOther && (selectedValue === 'Other' || selectedValue === 'Yes')) && (
                 <InputText
                     {...register(`other${id}`, { required: "This field is required." })}
                     id={`other${id}`}
-                    placeholder="Specify...."
+                    placeholder="   Specify...."
                 />
             )}
             {errors[id] && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
-            {hasOther && errors[`other${id}`] && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
+            {(hasOther && errors[`other${id}`]) && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
         </div>
     );
 };

@@ -211,11 +211,19 @@
 }
 
 .mouse-id {
-  align-self: flex-start; /* Aligns the MouseID to the start */
-  padding-left: 20px; /* Adjust as needed to align with the sidebar */
-  margin-top: 20px; /* Adds some space above the MouseID */
+  margin-right: 5px;
+  margin-left: 20px;
+  font-size: 1.2em; /* Increase the font size */
+  font-weight: bold; /* Make the text bold */
+  color: #07056f; /* Text color for the label */
 }
 
+.mouse-id span {
+  color: #062f50; /* Text color for the value */
+  background-color: #e3f2fd; /* Background color for the value */
+  padding: 0.2em 0.4em; /* Padding around the value */
+  border-radius: 4px; /* Rounded corners */
+}
 
 .custom-panel-fieldset .p-panel-header .p-fieldset-legend {
   background-color: #c0c8e0;
@@ -259,4 +267,37 @@
 .menubar-right .p-menubar-root-list > .p-menubaritem > .p-menuitem-link:hover {
   background-color: #0056b3; /* Change this color to the hover color you prefer */
   color: black;
+}
+.mouse-details {
+  background-color: #265787; /* Matching the header background color */
+  color: white;
+  /* padding: 10px 20px; Adjusted padding for better layout */
+  /* border-radius: 8px; */
+  
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mouse-detail {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+  padding: 5px 0;
+}
+
+.detail-label, .detail-value {
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+  margin-right: 20px;
+  
+}
+
+.detail-value {
+  color: #062f50;
+  background-color: #e3f2fd;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  text-align: left;
+  margin-left: 100px; /* Adjust the left margin for spacing */
 }
