@@ -22,7 +22,9 @@ const HomePage = ({ mousedetails }) => {
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: 'contains' },
         site: { value: null, matchMode: 'contains' },
-        shipmentdate: { value: null, matchMode: 'contains' }
+        shipmentdate: { value: null, matchMode: 'contains' },
+        sex: { value: null, matchMode: 'contains' },
+        studytype: { value: null, matchMode: 'contains' }
     });
     const [globalFilterValue, setGlobalFilterValue] = useState('');
     const experimentOptions = [
@@ -77,6 +79,25 @@ const HomePage = ({ mousedetails }) => {
         />
     );
 
+    const sexFilterElement = (
+        <InputText
+            value={filters.sex.value || ''}
+            onChange={onFilterChange('sex')}
+            placeholder="Search by sex"
+            className="p-column-filter"
+        />
+    );
+
+    const studyTypeFilterElement = (
+        <InputText
+            value={filters.studytype.value || ''}
+            onChange={onFilterChange('studytype')}
+            placeholder="Search by study type"
+            className="p-column-filter"
+        />
+    );
+
+
     const shipmentDateFilterElement = (
         <InputText
             value={filters.shipmentdate.value || ''}
@@ -97,7 +118,7 @@ const HomePage = ({ mousedetails }) => {
         <div className='p-grid'>
             <Header userName='Jane Doe' />
             <NavBar />
-            <div className="form-question p-col-12 p-md-6 p-lg-4" style={{ padding: '5px' }}>
+            <div className="p-col-12 p-md-6 p-lg-4" style={{ padding: '10px' }}>
                 <label>Select an experiment to enter the data for:</label>
                 <Dropdown value={experiment} options={experimentOptions} onChange={(e) => setExperiment(e.value)} placeholder="Select an Experiment" />
             </div>
@@ -114,12 +135,12 @@ const HomePage = ({ mousedetails }) => {
                     <Column selectionMode="multiple" headerStyle={{ width: '3em' }} />
                     <Column field="mouse_id" header="Mouse ID" />
                     <Column field="site" header="Site" filter filterElement={siteFilterElement} />
-                    <Column field="sex" header="Sex" />
+                    <Column field="sex" header="Sex" filter filterElement={sexFilterElement}/>
                     <Column field="dateofbirth" header="Date of Birth" />
                     <Column field="shipmentdate" header="Shipment Date" filter filterElement={shipmentDateFilterElement} />
                     <Column field="slurrydose" header="Fecal slurry dose" />
                     <Column field="endpoint" header="Study end point" />
-                    <Column field="studytype" header="Study type" />
+                    <Column field="studytype" header="Study type" filter filterElement={studyTypeFilterElement}/>
                     <Column field="cageid" header="Cage-id" />
                     <Column field="Forms" header="Forms" body={actionTemplate} />
                 </DataTable>

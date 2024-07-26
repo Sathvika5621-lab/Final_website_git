@@ -249,7 +249,7 @@
 
 .menubar-right {
   justify-content: flex-end;
-  background-color: #c1d5ed;
+  background-color: #dee4ec;
   border-radius : 8px;
   border : none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -271,9 +271,8 @@
 .mouse-details {
   background-color: #265787; /* Matching the header background color */
   color: white;
-  /* padding: 10px 20px; Adjusted padding for better layout */
+  padding: 10px 20px; 
   /* border-radius: 8px; */
-  
   margin-bottom: 20px;
   width: 100%;
 }
@@ -287,9 +286,9 @@
 
 .detail-label, .detail-value {
   font-weight: bold;
-  flex: 1;
+  flex: 0 0 150px;
   text-align: left;
-  margin-right: 20px;
+  margin-right: 10px;
   
 }
 
@@ -299,5 +298,46 @@
   padding: 0.2em 0.4em;
   border-radius: 4px;
   text-align: left;
-  margin-left: 100px; /* Adjust the left margin for spacing */
+  flex:1;
+  /* margin-left: 100px; Adjust the left margin for spacing */
+}
+
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #ffffff;
+  padding: 2rem;
+}
+
+.home-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.home-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem; /* Increased margin for more separation */
+  color: #265787;
+}
+
+.home-content {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.home-content a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.home-content a:hover {
+  text-decoration: underline;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
-import './styles.css'; // Import the CSS file
+import { Button } from 'primereact/button';
+import './styles.css'; 
 
 const NavBar = () => {
     let navigate = useNavigate();
@@ -18,6 +19,7 @@ const NavBar = () => {
             command: () => { navigate('/home-page'); }
         }
     ];
+
 
     return (
         <div>

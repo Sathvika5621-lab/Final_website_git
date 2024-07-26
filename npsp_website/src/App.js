@@ -9,6 +9,7 @@ import ForgotPassword from './components/Forms/ForgotPassword';
 import SyringePrepForm from './components/Forms/SyringePrepForm';
 import InductionForm from "./components/Forms/InductionForm";
 import IttForm from './components/Forms/IttForm';
+import RegisterHqp from './components/Forms/RegisterHqp';
 function App() {
   const [mousedetails, setMouseDetails] = useState([]);
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/register-hqp" element = {<RegisterHqp></RegisterHqp>} />
         <Route path="/home-page" element={<HomePage mousedetails={mousedetails} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/formslist" element={<FormsList />} />
