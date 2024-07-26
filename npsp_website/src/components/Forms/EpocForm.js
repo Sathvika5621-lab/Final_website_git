@@ -27,10 +27,37 @@ function EpocForm() {
       <div className="body-content" style = {{padding:'5px'}}>
        <ScrollPanel style={{width : '100%', height: '1000px'}}>
        <Fieldset legend= "EPOC FORM" className="fieldset-legend">
+
+       <Panel header="For any inquiries please contact Dr.Forough Jahandideh at fjahandideh@ohri.ca" toggleable className='custom-panel-fieldset'>
+           <h3 style={{ marginTop: '0', marginBottom: '0' }}>Instructions:</h3>
+           <ul style={{ marginTop: '0', marginBottom: '0' }}>
+             <li>1) Read the epoc protocol and watch the training video.</li>
+             <li>2) Print and complete the "Epoc Check" table. Take pictures of the epoc results and upload them to your center's specific folder in the NPSP SharePoint</li>
+            <li>3) Complete the form using data in the "Epoc Check" table</li>
+           </ul>
+        </Panel>
        <form onSubmit={handleSubmit(onSubmit)} className='p-formgrid p-grid'>
 
+       <div className="p-field form-question p-col-12" style={{ padding: '3px' }}>
+            <label>What is the expiry date of the Epoc cards that were used? </label>
+            <InputText type="date" {...register("expirydate", { required: "This field is required." })} />
+                {errors.expirydate && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
+        </div>
+
+        <div className="form-question" style={{ padding: '3px' }}>
+          <label>What is the LOT number of the Epoc cards that were utilized? </label>
+          <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("lotnumber", { required: "This field is required." })} />
+          {errors.lotnumber && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
+         </div>
+
+         <div className="form-question" style={{ padding: '3px' }}>
+          <label>Was it necessary to backdate the Epoc machine (for cards that had an expiry date of less than 6 months)? </label>
+          <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("backdateepoc", { required: "This field is required." })} />
+          {errors.backdateepoc && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
+         </div>
+
        <div className="form-question" style={{ padding: '3px' }}>
-          <label>User ID of the HQP responsible of the epoc device (sample injection) </label>
+          <label>Email ID of the HQP responsible of the epoc device (sample injection) </label>
           <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("epocdevidehandling", { required: "This field is required." })} />
           {errors.epocdevidehandling && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
          </div>
@@ -42,25 +69,25 @@ function EpocForm() {
          </div>
 
        <div className="form-question" style={{ padding: '3px' }}>
-          <label>Please enter the user ID of the HQP that completed the "EPOC Check" table: </label>
+          <label>Please enter the email ID of the HQP that completed the "EPOC Check" table: </label>
           <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("epoccheckHQP", { required: "This field is required." })} />
           {errors.epoccheckHQP && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
          </div>
 
        <div className="form-question" style={{ padding: '3px' }}>
-          <label>Please enter the user ID of the HQP completing the data entry: </label>
+          <label>Please enter the email ID of the HQP completing the data entry: </label>
           <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("HQPdataentry", { required: "This field is required." })} />
           {errors.HQPdataentry && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
          </div>
 
          <div className="form-question" style={{ padding: '3px' }}>
-          <label>Please enter the user ID of the HQP verifying the data entry: </label>
+          <label>Please enter the email ID of the HQP verifying the data entry: </label>
           <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"{...register("HQPverified", { required: "This field is required." })} />
           {errors.HQPverified && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
          </div>
 
          <div className="p-col-12 p-md-4">
-         <Fieldset legend="Blood Gas Analysis" className="p-mb-5">
+         <Fieldset className="p-mb-5">
                         <div className="p-fluid p-formgrid p-grid">
                             <div className="p-field p-col-12 p-md-6">
                                 <label htmlFor="ph">pH:</label>
@@ -90,7 +117,7 @@ function EpocForm() {
                     </Fieldset>
                   </div>
                   <div className="p-col-12 p-md-4">
-                    <Fieldset legend="Electrolytes and Hematology" className="p-mb-5">
+                    <Fieldset className="p-mb-5">
                         <div className="p-fluid p-formgrid p-grid">
                             <div className="p-field p-col-12 p-md-6">
                                 <label htmlFor="cso2">cSO2 (%):</label>
@@ -125,7 +152,7 @@ function EpocForm() {
                     </div>
 
                     <div className="p-col-12 p-md-4">
-                    <Fieldset legend="Metabolic and Renal" className="p-mb-5">
+                    <Fieldset className="p-mb-5">
                         <div className="p-fluid p-formgrid p-grid">
                             <div className="p-field p-col-12 p-md-6">
                                 <label htmlFor="glu">Glu (mmol/L):</label>

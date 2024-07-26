@@ -33,13 +33,13 @@ function IttForm({ addMouseDetails }) {
                     </Panel>
                     <form onSubmit={handleSubmit(onSubmit)} className='p-formgrid p-grid' style={{ padding: '10px' }}>
                         <div className="form-question" style={{ padding: '5px' }}>
-                            <label>Please enter the user ID of the HQP completing the data entry:</label>
+                            <label>Please enter the email ID of the HQP completing the data entry:</label>
                             <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" {...register("syringeprepid", { required: "This field is required." })} />
                             {errors.syringeprepid && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
                         </div>
 
                         <div className="form-question" style={{ padding: '3px' }}>
-                            <label>Please enter the user ID of the HQP that completed the "ITT Check" table:</label>
+                            <label>Please enter the email ID of the HQP that completed the "ITT Check" table:</label>
                             <input className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" {...register("wellnesscheckid", { required: "This field is required." })} />
                             {errors.wellnesscheckid && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
                         </div>
@@ -164,7 +164,7 @@ function IttForm({ addMouseDetails }) {
 
                         <RadioGroup
                             id="noofmiceincage"
-                            label=". How many mice are in the cage this mouse is held in?"
+                            label="8. How many mice are in the cage this mouse is held in?"
                             options={["Two", "Three", "Other"]}
                             register={register}
                             watch={watch}

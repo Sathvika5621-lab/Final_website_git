@@ -299,6 +299,10 @@
   border-radius: 4px;
   text-align: left;
   flex:1;
+  max-width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   /* margin-left: 100px; Adjust the left margin for spacing */
 }
 
