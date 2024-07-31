@@ -16,18 +16,44 @@ import { RadioGroup, CheckboxGroup } from './FormsComponents.js';
 
 const AnimalHousing = ({ addMouseDetails }) => {
     const { control, register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm();
-  
+    const [experimentNumbers, setExperimentNumbers] = useState({});
     const [lastMouseId, setLastMouseId] = useState(0); 
     let navigate = useNavigate();
 
     const onSubmit = (data) => {
         const { malemice, femalemice, deliverydate, site, studydates, slurrydose, endpoint, studytype } = data;
         const newMouseDetails = [];
-        let mouseCount = lastMouseId + 1;  // Start from the last mouse_id
+        let mouseCount = lastMouseId + 1; // Start from the last mouse_id
+
+        const centerCodes = {
+            Ottawa: '1',
+            McMaster: '2',
+            Western: '3',
+            Manitoba: '4',
+            Alberta: '5',
+            Calgary: '6'
+        };
+
+        const centerCode = centerCodes[site];
+        const studyTypeCode = studytype === "Pilot study" ? 'P' : 'S';
+        const experimentDayCode = studyTypeCode === 'S' ? String(new Date(studydates).getDate()).padStart(2, '0') : ''; // Extracting the day from the study date only for main study
+
+        // Logic to determine the experiment number
+        const experimentKey = `${centerCode}-${studyTypeCode}`;
+        let experimentNumber = experimentNumbers[experimentKey] || 1;
+
+        // Increment the experiment number for the next time
+        const updatedExperimentNumbers = {
+            ...experimentNumbers,
+            [experimentKey]: experimentNumber + 1
+        };
+        setExperimentNumbers(updatedExperimentNumbers);
+
+        const mousePrefix = `NPSP-C${centerCode}-${studyTypeCode}${studyTypeCode === 'P' ? String(experimentNumber).padStart(2, '0') : experimentDayCode}`;
 
         for (let i = 0; i < parseInt(malemice); i++) {
             newMouseDetails.push({
-                mouse_id: `M${String(mouseCount).padStart(5, '0')}`,
+                mouse_id: `${mousePrefix}-M${String(mouseCount).padStart(2, '0')}`,
                 site,
                 sex: 'Male',
                 shipmentdate: deliverydate,
@@ -41,7 +67,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
 
         for (let i = 0; i < parseInt(femalemice); i++) {
             newMouseDetails.push({
-                mouse_id: `M${String(mouseCount).padStart(5, '0')}`,
+                mouse_id: `${mousePrefix}-M${String(mouseCount).padStart(2, '0')}`,
                 site,
                 sex: 'Female',
                 shipmentdate: deliverydate,
@@ -53,7 +79,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
             mouseCount++;
         }
 
-        setLastMouseId(mouseCount - 1);  // Update the last mouse_id
+        setLastMouseId(mouseCount - 1); // Update the last mouse_id
         addMouseDetails(newMouseDetails);
         navigate('/home-page');
     };
