@@ -37,7 +37,7 @@ function FormsList() {
 
   return (
     <div>
-      <Header />
+      <Header userName='Jane Doe' />
       <div className='main-container'>
         <div className='mouse-details'>
           <div className="mouse-detail">

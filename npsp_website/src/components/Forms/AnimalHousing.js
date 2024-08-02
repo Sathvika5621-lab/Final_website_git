@@ -1,5 +1,4 @@
-// AnimalHousing.js
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Panel } from 'primereact/panel';
@@ -13,43 +12,64 @@ import "../Formstyle.css";
 import { useNavigate } from 'react-router-dom';
 import { RadioGroup, CheckboxGroup } from './FormsComponents.js';
 
-
 const AnimalHousing = ({ addMouseDetails }) => {
-    const { control, register, handleSubmit, formState: { errors }, setValue, watch, clearErrors } = useForm();
-    const [experimentNumbers, setExperimentNumbers] = useState({});
-    const [lastMouseId, setLastMouseId] = useState(0); 
+    const { register, handleSubmit, formState: { errors }, watch, setValue, clearErrors } = useForm();
+    const [experimentNumbers, setExperimentNumbers] = useState(() => {
+        const storedData = localStorage.getItem('experimentNumbers');
+        return storedData ? JSON.parse(storedData) : {
+            '1-P': {}, '1-S': {}, '2-P': {}, '2-S': {}, 
+            '3-P': {}, '3-S': {}, '4-P': {}, '4-S': {}, 
+            '5-P': {}, '5-S': {}, '6-P': {}, '6-S': {}
+        };
+    });
+
+    const [lastMouseNumber, setLastMouseNumber] = useState(() => {
+        const storedData = localStorage.getItem('lastMouseNumber');
+        return storedData ? JSON.parse(storedData) : {
+            '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0
+        };
+    });
+    
     let navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem('experimentNumbers', JSON.stringify(experimentNumbers));
+    }, [experimentNumbers]);
+
+    useEffect(() => {
+        localStorage.setItem('lastMouseNumber', JSON.stringify(lastMouseNumber));
+    }, [lastMouseNumber]);
 
     const onSubmit = (data) => {
         const { malemice, femalemice, deliverydate, site, studydates, slurrydose, endpoint, studytype } = data;
         const newMouseDetails = [];
-        let mouseCount = lastMouseId + 1; // Start from the last mouse_id
-
         const centerCodes = {
-            Ottawa: '1',
-            McMaster: '2',
-            Western: '3',
-            Manitoba: '4',
-            Alberta: '5',
-            Calgary: '6'
+            Ottawa: '1', McMaster: '2', Western: '3', Manitoba: '4', Alberta: '5', Calgary: '6'
         };
 
         const centerCode = centerCodes[site];
         const studyTypeCode = studytype === "Pilot study" ? 'P' : 'S';
-        const experimentDayCode = studyTypeCode === 'S' ? String(new Date(studydates).getDate()).padStart(2, '0') : ''; // Extracting the day from the study date only for main study
-
-        // Logic to determine the experiment number
+        const studyDate = new Date(studydates).toISOString().split('T')[0];
         const experimentKey = `${centerCode}-${studyTypeCode}`;
-        let experimentNumber = experimentNumbers[experimentKey] || 1;
 
-        // Increment the experiment number for the next time
-        const updatedExperimentNumbers = {
-            ...experimentNumbers,
-            [experimentKey]: experimentNumber + 1
-        };
-        setExperimentNumbers(updatedExperimentNumbers);
+        // Initialize or update experiment day count based on study date
+        let experimentInfo = { ...experimentNumbers[experimentKey] };
 
-        const mousePrefix = `NPSP-C${centerCode}-${studyTypeCode}${studyTypeCode === 'P' ? String(experimentNumber).padStart(2, '0') : experimentDayCode}`;
+        if (!experimentInfo[studyDate]) {
+            experimentInfo[studyDate] = Object.keys(experimentInfo).length + 1;
+        }
+
+        // Update experiment numbers state
+        setExperimentNumbers(prevState => ({
+            ...prevState,
+            [experimentKey]: experimentInfo
+        }));
+
+        const experimentDayCode = String(experimentInfo[studyDate]).padStart(2, '0');
+        const mousePrefix = `NPSP-C${centerCode}-${studyTypeCode}${experimentDayCode}`;
+
+        // Get the last mouse number used for this site, and start from the next number
+        let mouseCount = lastMouseNumber[centerCode] + 1;
 
         for (let i = 0; i < parseInt(malemice); i++) {
             newMouseDetails.push({
@@ -67,7 +87,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
 
         for (let i = 0; i < parseInt(femalemice); i++) {
             newMouseDetails.push({
-                mouse_id: `${mousePrefix}-M${String(mouseCount).padStart(2, '0')}`,
+                mouse_id: `${mousePrefix}-F${String(mouseCount).padStart(2, '0')}`,
                 site,
                 sex: 'Female',
                 shipmentdate: deliverydate,
@@ -79,7 +99,12 @@ const AnimalHousing = ({ addMouseDetails }) => {
             mouseCount++;
         }
 
-        setLastMouseId(mouseCount - 1); // Update the last mouse_id
+        // Update the last mouse number used for this site
+        setLastMouseNumber(prevState => ({
+            ...prevState,
+            [centerCode]: mouseCount - 1
+        }));
+
         addMouseDetails(newMouseDetails);
         navigate('/home-page');
     };
@@ -99,7 +124,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
                                 </ul>
                             </Panel>
                             <Panel header="PERSONAL AND EXPERIMENT INFORMATION" style={{ padding: '2px' }}>
-                                <div className="form-question" style={{ padding: '3px' }}>
+                                {/* <div className="form-question" style={{ padding: '3px' }}>
                                     <label>1. Please enter the email ID of the HQP completing the data entry in the online database: </label>
                                     <InputText className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" {...register("dataentry", { required: "This field is required." })} />
                                     {errors.dataentry && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
@@ -109,7 +134,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
                                     <label>2. Please enter the email ID of the HQP that manually completed “Animal Housing Check” table: </label>
                                     <InputText className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary" {...register("housingcheck", { required: "This field is required." })} />
                                     {errors.housingcheck && <p style={{ color: 'red', marginTop: '0', marginBottom: '0' }}>*This field is required*</p>}
-                                </div>
+                                </div> */}
 
                                 <RadioGroup
                                     id="site"
@@ -169,7 +194,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
                                     errors={errors}
                                     hasOther={true}
                                 />
-
+{/* 
                                 <RadioGroup
                                     id="strain"
                                     label="11. What is the strain of the mice?"
@@ -318,9 +343,9 @@ const AnimalHousing = ({ addMouseDetails }) => {
                                         I confirm that we have communicated with NPSP coordinator about our scheduled experiments.
                                     </label>
                                     {errors.npspCoordinatorCommunication && <p style={{ color: 'red' }}>{errors.npspCoordinatorCommunication.message}</p>}
-                                </div>
+                                </div> */}
 
-                                <div className="form-question p-field" style={{ padding: "3px" }}>
+                                {/* <div className="form-question p-field" style={{ padding: "3px" }}>
                                     <label htmlFor="deviations">Are there any other deviations from the protocol during enrollment?</label>
                                     <div className="p-col">
                                         <InputTextarea id="deviations" {...register("deviations")} autoResize />
@@ -332,7 +357,7 @@ const AnimalHousing = ({ addMouseDetails }) => {
                                     <div className="p-col">
                                         <InputTextarea id="comments" {...register("comments")} autoResize />
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="flex md:justify-content-end flex-wrap flex-container">
                                     <div className="flex-order-0 flex align-items-center justify-content-center">

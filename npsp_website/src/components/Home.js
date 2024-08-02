@@ -11,8 +11,10 @@ import './styles.css';
 
 function Home() {
   return (
-    <div>
-        <Header />
+    <div className='p-grid'>
+
+        <Header userName='Jane Doe' />
+      
         <NavBar />
         <div className="home-container">
             <Card className="home-card">

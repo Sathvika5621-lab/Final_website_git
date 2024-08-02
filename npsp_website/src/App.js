@@ -10,6 +10,8 @@ import SyringePrepForm from './components/Forms/SyringePrepForm';
 import InductionForm from "./components/Forms/InductionForm";
 import IttForm from './components/Forms/IttForm';
 import RegisterHqp from './components/Forms/RegisterHqp';
+import AdminSitelist from './components/AdminSitelist';
+
 function App() {
   const [mousedetails, setMouseDetails] = useState([]);
 
@@ -29,6 +31,7 @@ function App() {
         <Route path="/syringe-prep" element ={<SyringePrepForm />} />
         {/* <Route path="/itt-form" element={<IttForm onSubmitHandler={addMouseDetails} />} /> */}
         <Route path="/animal-housing" element={<AnimalHousing addMouseDetails={addMouseDetails} />} />
+        <Route path="/sites-list" element={<AdminSitelist /> } />
       </Routes>
     </Router>
   );

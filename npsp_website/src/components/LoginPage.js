@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 import { useForm } from 'react-hook-form';
 import { useNavigate, Link } from 'react-router-dom';
 import { Card } from 'primereact/card';
@@ -13,14 +14,17 @@ import 'primeflex/primeflex.css';
 
 function LoginPage() {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loginError, setLoginError] = useState('');
   let navigate = useNavigate();
 
   const onSubmit = (data) => {
     if (data.email === 'admin' && data.password === 'admin') {
+      setLoginError('');
       navigate('/home');
       // navigate('/animal-housing');
     } else {
       console.error('Invalid credentials');
+      setLoginError('Invalid username or password. Please try again.');
     }
     console.log(data);
   };
@@ -41,6 +45,7 @@ function LoginPage() {
             {errors.password && <small className="p-error">Password is required.</small>}
           </div>
           <Button type="submit" label="Login" className="p-button-lg form-blue-button-sm" />
+          {loginError && <small className="p-error">{loginError}</small>} {/* Display the error message */}
           <div style={{ padding: '5px' }} className='links'>
             <Link to="/register-hqp">Register</Link> | <Link to="/forgot-password">Forgot Password</Link>
           </div>

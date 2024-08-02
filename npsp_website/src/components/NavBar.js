@@ -17,7 +17,16 @@ const NavBar = () => {
             label: 'Mouse Details',
             icon: 'pi pi-fw pi-plus',
             command: () => { navigate('/home-page'); }
+        }, 
+
+        {
+            label: 'Sites list',
+            icon: 'pi pi-fw pi-list',
+            command: () => {navigate('/sites-list');} 
+
         }
+
+
     ];
 
 
